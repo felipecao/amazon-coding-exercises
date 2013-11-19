@@ -14,24 +14,23 @@ import java.util.Set;
  */
 public class FirstOddPicker {
     public Character identifyFirstOddFromStream(Stream stream) {
-        Set<Character> charsAlreadyRead = new LinkedHashSet<Character>();
-        Character n = null;
+      	Set<Character> charsAlreadyRead = new LinkedHashSet<Character>();
+		Character n = null;
 
-        if(null == stream){
-            return null;
-        }
+		if(null == stream){
+			return null;
+		}
 
-        while (stream.hasNext()){
-            n = Character.toLowerCase(stream.getNext());
+		while (stream.hasNext()){
+			n = stream.getNext();
 
-            if(charsAlreadyRead.isEmpty()){
-                charsAlreadyRead.add(n);
-            }
-            else if(!charsAlreadyRead.contains(n)){
-                return n;
-            }
-        }
-
-        return null;
+			if(charsAlreadyRead.contains(n)){
+				charsAlreadyRead.remove(n);
+			} else {
+				charsAlreadyRead.add(n);
+			}
+		}
+		
+		return (Character) charsAlreadyRead.toArray()[0];
     }
 }
